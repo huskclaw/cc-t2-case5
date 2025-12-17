@@ -6,9 +6,9 @@ $result = $conn->query("SELECT id, name, note, created_at FROM guests ORDER BY i
 ?>
 <!doctype html>
 <html>
-<head><meta charset="utf-8"><title>Delete Service</title></head>
+<head><meta charset="utf-8"><title>Guest Management</title></head>
 <body>
-  <h2>Delete Service (Hard Delete)</h2>
+  <h2>Guest Management</h2>
   <p><a href="/">Home</a></p>
 
   <h3>Guests</h3>
