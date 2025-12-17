@@ -62,6 +62,7 @@ services:
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
+      PMA_ABSOLUTE_URI: /phpmyadmin
     expose:
       - "80"
     depends_on:
