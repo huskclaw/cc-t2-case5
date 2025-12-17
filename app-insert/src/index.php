@@ -4,11 +4,11 @@ $conn = db();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $name = trim($_POST["name"] ?? "");
-  $message = trim($_POST["message"] ?? "");
+  $note = trim($_POST["note"] ?? "");
 
-  if ($name !== "" && $message !== "") {
-    $stmt = $conn->prepare("INSERT INTO guests (name, message) VALUES (?, ?)");
-    $stmt->bind_param("ss", $name, $message);
+  if ($name !== "" && $note !== "") {
+    $stmt = $conn->prepare("INSERT INTO guests (name, note) VALUES (?, ?)");
+    $stmt->bind_param("ss", $name, $note);
     $stmt->execute();
     $stmt->close();
   }
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   exit;
 }
 
-$result = $conn->query("SELECT id, name, message, created_at FROM guests ORDER BY id DESC");
+$result = $conn->query("SELECT id, name, note, created_at FROM guests ORDER BY id DESC");
 ?>
 <!doctype html>
 <html>
@@ -31,20 +31,20 @@ $result = $conn->query("SELECT id, name, message, created_at FROM guests ORDER B
       <input name="name" required>
     </div>
     <div>
-      <label>Message</label><br>
-      <textarea name="message" rows="3" required></textarea>
+      <label>Note</label><br>
+      <textarea name="note" rows="3" required></textarea>
     </div>
     <button type="submit">Add Guest</button>
   </form>
 
   <h3>Current Guests</h3>
   <table border="1" cellpadding="6" cellspacing="0">
-    <tr><th>ID</th><th>Name</th><th>Message</th><th>Created</th></tr>
+    <tr><th>ID</th><th>Name</th><th>Note</th><th>Created</th></tr>
     <?php while($row = $result->fetch_assoc()): ?>
       <tr>
         <td><?= htmlspecialchars($row["id"]) ?></td>
         <td><?= htmlspecialchars($row["name"]) ?></td>
-        <td><?= htmlspecialchars($row["message"]) ?></td>
+        <td><?= htmlspecialchars($row["note"]) ?></td>
         <td><?= htmlspecialchars($row["created_at"]) ?></td>
       </tr>
     <?php endwhile; ?>
