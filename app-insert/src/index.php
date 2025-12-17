@@ -20,9 +20,9 @@ $result = $conn->query("SELECT id, name, message, created_at FROM guests ORDER B
 ?>
 <!doctype html>
 <html>
-<head><meta charset="utf-8"><title>Insert Service</title></head>
+<head><meta charset="utf-8"><title>Guest Registration</title></head>
 <body>
-  <h2>Insert Service</h2>
+  <h2>Guest Registration</h2>
   <p><a href="/">Home</a></p>
 
   <form method="POST">
